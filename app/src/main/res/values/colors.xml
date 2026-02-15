@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Basic colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Primary theme colors -->
+    <color name="primary">#73A580</color>
+    <color name="primary_light">#A3C7A5</color> <!-- lighter version for buttons / filters -->
+    <color name="splash_green">#73A580</color>
+
+    <!-- Backgrounds -->
+    <color name="bg_light">#F3F7F4</color>
+    <color name="card_bg">#FFFFFF</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#1F3D3D</color> <!-- for titles -->
+    <color name="text_secondary">#666666</color> <!-- for subtitles / time -->
+
+    <!-- Status colors (for Critical / Recent) -->
+    <color name="status_recent">#73A580</color>
+    <color name="status_critical">#E57373</color>
+</resources>

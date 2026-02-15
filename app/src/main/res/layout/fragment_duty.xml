@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duty Assignments"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"/>
+
+        <!-- Search bar -->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:hint="Search ward/shift"
+            android:background="@drawable/white_card"
+            android:padding="12dp"
+            android:inputType="text"/>
+
+        <!-- Horizontal calendar -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Day item -->
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/white_card"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="sat"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="07"
+                        android:textStyle="bold"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+
+                <!-- Selected day -->
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/green_card"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="mon"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="09"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Schedule title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today’s Schedule"
+            android:layout_marginTop="20dp"
+            android:textColor="#777"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monday, Feb 9"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"/>
+
+        <!-- Schedule container -->
+        <LinearLayout
+            android:id="@+id/scheduleContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <!-- Task 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/white_card"
+                android:elevation="4dp"
+                android:padding="16dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ward A - Morning Shift"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8:00 AM - 2:00 PM, General Ward"
+                        android:textColor="#666"/>
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    android:text="OPEN"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="@color/primary"/>
+            </LinearLayout>
+
+            <!-- Task 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/white_card"
+                android:elevation="4dp"
+                android:padding="16dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Emergency Ward"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8:00 PM - 8:00 AM"
+                        android:textColor="#666"/>
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    android:text="OPEN"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="@color/primary"/>
+            </LinearLayout>
+
+            <!-- Task 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/white_card"
+                android:elevation="4dp"
+                android:padding="16dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ICU Checkup"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2:00 PM - 6:00 PM"
+                        android:textColor="#666"/>
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    android:text="OPEN"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="@color/primary"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

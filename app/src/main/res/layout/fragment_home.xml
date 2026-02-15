@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:text="Dashboard"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/greeting"
+            android:text="Good Morning, Dr. Smith"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_below="@id/title"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:id="@+id/shiftCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/green_card"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_below="@id/greeting"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:text="Today’s Shift"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="08:00 AM - 02:00 PM Ward A"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dutyCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_card"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_below="@id/shiftCard"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:text="Duty Assignments"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:text="OPEN"
+                android:backgroundTint="@color/primary"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="10dp"
+                android:layout_width="120dp"
+                android:layout_height="40dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/notesCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_card"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_below="@id/dutyCard"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="80dp">
+
+            <TextView
+                android:text="Patient Notes"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:text="OPEN"
+                android:backgroundTint="#4E7FA1"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="10dp"
+                android:layout_width="120dp"
+                android:layout_height="40dp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
