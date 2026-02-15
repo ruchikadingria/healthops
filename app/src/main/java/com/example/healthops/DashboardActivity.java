@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import com.example.healthops.fragments.DutyFragment;
 import com.example.healthops.fragments.HomeFragment;
 import com.example.healthops.fragments.NotesFragment;
+import com.example.healthops.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -37,6 +38,10 @@ public class DashboardActivity extends AppCompatActivity {
 
             else if (item.getItemId() == R.id.nav_notes) {
                 selectedFragment = new NotesFragment();
+            }
+
+            else if (item.getItemId() == R.id.nav_profile) {
+                selectedFragment = new ProfileFragment();
             }
 
             if (selectedFragment != null) {

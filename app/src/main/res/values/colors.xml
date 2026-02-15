@@ -20,4 +20,7 @@
     <!-- Status colors (for Critical / Recent) -->
     <color name="status_recent">#73A580</color>
     <color name="status_critical">#E57373</color>
+
+    <color name="blue_custom">#4E7FA1</color>
+
 </resources>
