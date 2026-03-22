@@ -1,5 +1,36 @@
 <resources>
     <string name="app_name">HealthOps</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open">OPEN</string>
+    <string name="greeting_staff">Good morning, %1$s</string>
+    <string name="greeting_patient">Hello, %1$s</string>
+    <string name="link_patient_login">Patient? Login here</string>
+    <string name="toast_saved">Saved items will appear here in a future update.</string>
+    <string name="toast_appointments">Appointments can be managed from your care team portal.</string>
+    <string name="toast_faqs">FAQs: visit the hospital website or call the main desk.</string>
+    <string name="file_default_subtitle">Details</string>
+    <string name="file_default_description">Additional information for this record.</string>
+    <string name="file_label_shift_time">Shift time</string>
+    <string name="file_label_team">Team</string>
+    <string name="file_default_row2">See ward assignment board</string>
+    <string name="file_label_tasks">Tasks</string>
+    <string name="file_default_row3">Follow standard ward protocols</string>
+    <string name="file_duty_overview">Duty overview</string>
+    <string name="file_duty_description_short">Review timing and responsibilities for this assignment.</string>
+    <string name="file_label_location">Location</string>
+    <string name="file_duty_location_hint">Confirm on the ward floor plan</string>
+    <string name="file_duty_tasks_hint">Rounds, vitals, and handoff documentation</string>
+    <string name="file_label_recorded">Recorded</string>
+    <string name="file_label_appointment_time">Appointment</string>
+    <string name="file_label_updated">Updated</string>
+    <string name="file_label_ward">Ward</string>
+    <string name="file_label_status">Status</string>
+    <string name="profile_subtitle_staff">Senior medical assistant</string>
+    <string name="profile_subtitle_patient">Patient portal</string>
+    <string name="home_shift_title">Today’s shift</string>
+    <string name="home_shift_time_line">08:00 AM - 02:00 PM, Ward A</string>
+    <string name="home_shift_subtitle">Current assignment</string>
+    <string name="home_shift_body">You are rostered for general ward coverage including admissions handoff.</string>
+    <string name="home_shift_location">Ward A</string>
+    <string name="home_shift_tasks">Rounds, vitals, documentation</string>
 </resources>

@@ -45,6 +45,7 @@
                 android:layout_marginStart="20dp">
 
                 <TextView
+                    android:id="@+id/profileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="John Doe"
@@ -53,6 +54,7 @@
                     android:textColor="@color/text_primary"/>
 
                 <TextView
+                    android:id="@+id/profileSubtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Senior medical assistant"
@@ -175,6 +177,7 @@
 
             <!-- Menu Row Template -->
             <LinearLayout
+                android:id="@+id/rowSaved"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
@@ -182,7 +185,9 @@
                 android:background="@drawable/menu_item_bg"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="0dp"
@@ -200,6 +205,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/rowAppointment"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
@@ -207,7 +213,9 @@
                 android:background="@drawable/menu_item_bg"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="0dp"
@@ -225,6 +233,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/rowFaqs"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
@@ -232,7 +241,9 @@
                 android:background="@drawable/menu_item_bg"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="0dp"
@@ -250,13 +261,16 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/rowLogout"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:background="@drawable/menu_item_bg"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                android:paddingEnd="16dp"
+                android:clickable="true"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="0dp"

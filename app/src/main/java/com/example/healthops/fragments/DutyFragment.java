@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.healthops.FileViewerActivity;
@@ -71,12 +72,12 @@ public class DutyFragment extends Fragment {
         TextView tvTitle = new TextView(getContext());
         tvTitle.setText(title);
         tvTitle.setTextSize(16f);
-        tvTitle.setTextColor(getResources().getColor(R.color.text_primary));
+        tvTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_primary));
 
         TextView tvTime = new TextView(getContext());
         tvTime.setText(time);
         tvTime.setTextSize(14f);
-        tvTime.setTextColor(getResources().getColor(R.color.text_secondary));
+        tvTime.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_secondary));
 
         textLayout.addView(tvTitle);
         textLayout.addView(tvTime);
@@ -93,9 +94,7 @@ public class DutyFragment extends Fragment {
         openButton.setLayoutParams(buttonParams);
 
         openButton.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), FileViewerActivity.class);
-            intent.putExtra("TITLE", title);
-            intent.putExtra("TIME", time);
+            Intent intent = FileViewerActivity.newIntent(requireContext(), title, time);
             startActivity(intent);
         });
 

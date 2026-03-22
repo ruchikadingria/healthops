@@ -52,6 +52,10 @@ public class DashboardActivity extends AppCompatActivity {
         });
     }
 
+    public void navigateTo(int bottomNavItemId) {
+        bottomNav.setSelectedItemId(bottomNavItemId);
+    }
+
     private void loadFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()

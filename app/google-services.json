@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "119682739179",
+    "project_id": "healthops-cdec4",
+    "storage_bucket": "healthops-cdec4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119682739179:android:a6c8d1b5fcdf63eb36c7ae",
+        "android_client_info": {
+          "package_name": "com.example.healthops"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMGHzqfzfRD_VvPqQh6NwecLGLxqKjskU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

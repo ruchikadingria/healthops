@@ -11,11 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthOps">
+
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
         <activity
             android:name=".FileViewerActivity"
             android:exported="false" />
         <activity
             android:name=".DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PatientLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PatientDashboardActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

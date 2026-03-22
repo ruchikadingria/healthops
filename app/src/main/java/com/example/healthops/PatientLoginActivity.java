@@ -16,61 +16,55 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity {
+public class PatientLoginActivity extends AppCompatActivity {
 
-    private EditText emailInput, passwordInput;
+    private EditText patientIdInput, passwordInput;
     private Button loginBtn;
-    private TextView linkPatientLogin, linkRegister;
+    private TextView linkStaff;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_patient_login);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        emailInput = findViewById(R.id.emailInput);
-        passwordInput = findViewById(R.id.passwordInput);
-        loginBtn = findViewById(R.id.loginBtn);
-        linkPatientLogin = findViewById(R.id.linkPatientLogin);
-        linkRegister = findViewById(R.id.linkRegister);
+        patientIdInput = findViewById(R.id.patientIdInput);
+        passwordInput = findViewById(R.id.patientPasswordInput);
+        loginBtn = findViewById(R.id.patientLoginBtn);
+        linkStaff = findViewById(R.id.linkStaffLogin);
 
-        loginBtn.setOnClickListener(v -> loginUser());
+        loginBtn.setOnClickListener(v -> login());
         
-        linkPatientLogin.setOnClickListener(v -> {
-            startActivity(new Intent(this, PatientLoginActivity.class));
+        linkStaff.setOnClickListener(v -> {
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
-        });
-
-        linkRegister.setOnClickListener(v -> {
-            startActivity(new Intent(this, RegisterActivity.class));
         });
     }
 
-    private void loginUser() {
-        String email = emailInput.getText().toString().trim();
+    private void login() {
+        String email = patientIdInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
-            emailInput.setError("Enter hospital email");
+            patientIdInput.setError("Enter patient email");
             return;
         }
-
         if (TextUtils.isEmpty(password)) {
             passwordInput.setError("Enter password");
             return;
         }
 
-        // Firebase Auth for Staff
+        // Firebase Auth for Patient
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        saveUserInfoToFirestore(email, "staff");
+                        saveUserInfoToFirestore(email, "patient");
                     } else {
-                        Toast.makeText(LoginActivity.this, "Authentication failed: " + task.getException().getMessage(),
+                        Toast.makeText(PatientLoginActivity.this, "Authentication failed: " + task.getException().getMessage(),
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -86,15 +80,14 @@ public class LoginActivity extends AppCompatActivity {
         db.collection("users").document(uid)
                 .set(user)
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(LoginActivity.this, "Staff Login Successful", Toast.LENGTH_SHORT).show();
-                    SessionPreferences.setStaffSession(this, email);
+                    Toast.makeText(PatientLoginActivity.this, "Patient Login Successful", Toast.LENGTH_SHORT).show();
+                    SessionPreferences.setPatientSession(this, email);
                     
-                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(this, PatientDashboardActivity.class));
                     finish();
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(LoginActivity.this, "Error saving user info: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PatientLoginActivity.this, "Error saving user info: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 }

@@ -1,6 +1,86 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="Notes Fragment"
-    android:textSize="24sp"
-    android:gravity="center"/>
+    android:background="@color/bg_light"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Patient notes"
+            android:textColor="@color/primary"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Ward updates, vitals, and critical flags"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/notesSearchInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/white_card"
+            android:hint="Search patient, ward, or keyword"
+            android:inputType="text"
+            android:padding="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="start"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/btnFilterAll"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/primary"
+                android:text="ALL"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnFilterRecent"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/primary_light"
+                android:text="Recent"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnFilterCritical"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/status_critical"
+                android:text="Critical"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/notesListContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="72dp"
+            android:orientation="vertical" />
+    </LinearLayout>
+</ScrollView>

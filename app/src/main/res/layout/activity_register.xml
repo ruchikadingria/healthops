@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Account"
+            android:textColor="#000"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/login_card"
+        android:elevation="6dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <RadioGroup
+            android:id="@+id/roleGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/rbStaff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Staff"
+                android:checked="true"
+                android:layout_marginRight="20dp"/>
+
+            <RadioButton
+                android:id="@+id/rbPatient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Patient" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/regEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/input_box"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/regPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/input_box"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="12dp" />
+
+        <Button
+            android:id="@+id/registerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:backgroundTint="@color/primary"
+            android:text="REGISTER"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/linkLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="Already have an account? Login"
+            android:textColor="@color/primary"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

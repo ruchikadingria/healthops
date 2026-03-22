@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/patientHomeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My care"
+            android:textColor="@color/blue_custom"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/patientGreeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/patientHomeTitle"
+            android:layout_marginTop="10dp"
+            android:text="Hello"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary" />
+
+        <LinearLayout
+            android:id="@+id/nextVisitCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/patientGreeting"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/white_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next visit"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Tue 10:30 AM — Dr. Rao, Outpatient Clinic"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnOpenNextVisit"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/blue_custom"
+                android:text="OPEN"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/labResultsCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nextVisitCard"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/green_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recent lab summary"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="CBC and metabolic panel — all values in expected range"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnOpenLabs"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/white"
+                android:text="OPEN"
+                android:textColor="@color/primary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/notesShortcutCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labResultsCard"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="80dp"
+            android:background="@drawable/white_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My notes"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Read notes from your care team"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnOpenMyNotes"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/blue_custom"
+                android:text="OPEN"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

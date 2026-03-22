@@ -33,11 +33,13 @@
             android:id="@+id/shiftCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/green_card"
-            android:orientation="vertical"
-            android:padding="16dp"
             android:layout_below="@id/greeting"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:background="@drawable/green_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
                 android:text="Today’s Shift"
@@ -82,12 +84,13 @@
 
 
             <Button
-                android:text="OPEN"
-                android:backgroundTint="@color/primary"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="10dp"
+                android:id="@+id/btnHomeDutyOpen"
                 android:layout_width="120dp"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/primary"
+                android:text="OPEN"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <LinearLayout
@@ -118,12 +121,13 @@
 
 
             <Button
-                android:text="OPEN"
-                android:backgroundTint="#4E7FA1"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="10dp"
+                android:id="@+id/btnHomeNotesOpen"
                 android:layout_width="120dp"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#4E7FA1"
+                android:text="OPEN"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
     </RelativeLayout>
