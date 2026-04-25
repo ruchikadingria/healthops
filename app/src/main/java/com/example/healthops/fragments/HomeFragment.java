@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,14 +24,18 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         TextView greeting = view.findViewById(R.id.greeting);
         String name = SessionPreferences.getDisplayName(requireContext());
         greeting.setText(getString(R.string.greeting_staff, name));
 
+        // ✅ SHIFT CARD CLICK
         view.findViewById(R.id.shiftCard).setOnClickListener(v -> {
-            Intent i = FileViewerActivity.newIntent(requireContext(),
+
+            Intent i = FileViewerActivity.newIntent(
+                    requireContext(),
                     getString(R.string.home_shift_title),
                     getString(R.string.home_shift_time_line),
                     getString(R.string.home_shift_subtitle),
@@ -38,11 +43,14 @@ public class HomeFragment extends Fragment {
                     getString(R.string.file_label_location),
                     getString(R.string.home_shift_location),
                     getString(R.string.file_label_tasks),
-                    getString(R.string.home_shift_tasks));
-            i.putExtra(FileViewerActivity.EXTRA_TIME_LABEL, getString(R.string.file_label_shift_time));
+                    getString(R.string.home_shift_tasks),
+                    null   // ✅ FIX: no taskId here
+            );
+
             startActivity(i);
         });
 
+        // DUTY BUTTON
         Button dutyOpen = view.findViewById(R.id.btnHomeDutyOpen);
         dutyOpen.setOnClickListener(v -> {
             if (getActivity() instanceof DashboardActivity) {
@@ -50,6 +58,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        // NOTES BUTTON
         Button notesOpen = view.findViewById(R.id.btnHomeNotesOpen);
         notesOpen.setOnClickListener(v -> {
             if (getActivity() instanceof DashboardActivity) {

@@ -38,7 +38,7 @@ public class PatientHomeFragment extends Fragment {
                     "Check-in",
                     "Front desk — Clinic B",
                     "Preparation",
-                    "Fast only if instructed by your care team");
+                    "Fast only if instructed by your care team", null);
             i.putExtra(FileViewerActivity.EXTRA_TIME_LABEL, getString(R.string.file_label_appointment_time));
             startActivity(i);
         });
@@ -52,7 +52,7 @@ public class PatientHomeFragment extends Fragment {
                     "Ordering provider",
                     "Dr. Rao",
                     "Follow-up",
-                    "Routine follow-up at next scheduled visit");
+                    "Routine follow-up at next scheduled visit", null);
             i.putExtra(FileViewerActivity.EXTRA_TIME_LABEL, getString(R.string.file_label_updated));
             startActivity(i);
         });

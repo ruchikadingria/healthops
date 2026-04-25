@@ -1,86 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_light"
-    android:fillViewport="true">
+    android:background="@color/bg_light">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My care notes"
-            android:textColor="@color/blue_custom"
-            android:textSize="26sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Messages and updates from your care team"
-            android:textColor="@color/text_secondary"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/patientNotesSearch"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/white_card"
-            android:hint="Search your notes"
-            android:inputType="text"
-            android:padding="12dp" />
+        android:layout_height="match_parent"
+        android:layout_above="@id/fabAddPatientNote">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="start"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:orientation="vertical"
+            android:padding="20dp">
 
-            <Button
-                android:id="@+id/patientBtnAll"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/blue_custom"
-                android:text="ALL"
-                android:textColor="@color/white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My care notes"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="@color/blue_custom" />
 
-            <Button
-                android:id="@+id/patientBtnRecent"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/blue_custom"
-                android:text="Recent"
-                android:textColor="@color/white" />
+            <EditText
+                android:id="@+id/patientNotesSearch"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Search notes"
+                android:padding="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/white_card" />
 
-            <Button
-                android:id="@+id/patientBtnCritical"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/status_critical"
-                android:text="Critical"
-                android:textColor="@color/white" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/patientBtnAll"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:text="ALL" />
+
+                <Button
+                    android:id="@+id/patientBtnRecent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:text="Recent" />
+
+                <Button
+                    android:id="@+id/patientBtnCritical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:text="Critical" />
+            </LinearLayout>
+
+            <!-- IMPORTANT: THIS ID MUST MATCH JAVA -->
+            <LinearLayout
+                android:id="@+id/patientNotesContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp"/>
         </LinearLayout>
+    </ScrollView>
 
-        <LinearLayout
-            android:id="@+id/patientNotesContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="72dp"
-            android:orientation="vertical" />
-    </LinearLayout>
-</ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddPatientNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+</RelativeLayout>

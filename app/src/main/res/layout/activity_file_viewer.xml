@@ -12,35 +12,47 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <!-- App Title -->
+        <!-- 🔙 HEADER -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:paddingBottom="20dp">
+            android:layout_marginBottom="16dp">
 
+            <!-- Back Button -->
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:id="@+id/btnBack"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@android:drawable/ic_media_previous"
+                android:tint="@color/primary"
+                android:padding="4dp"
+                android:contentDescription="Back"/>
+
+            <!-- Icon -->
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="12dp"
                 android:src="@drawable/ic_file"
                 app:tint="@color/primary"/>
 
+            <!-- Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="File Viewer"
                 android:textColor="@color/text_primary"
                 android:textStyle="bold"
-                android:textSize="24sp"
-                android:paddingStart="12dp"/>
+                android:textSize="22sp"
+                android:layout_marginStart="10dp"/>
         </LinearLayout>
 
-        <!-- Modern Card -->
+        <!-- 📄 CARD -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="8dp"
             app:cardBackgroundColor="@color/card_bg">
@@ -51,7 +63,7 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <!-- Ward Title -->
+                <!-- Title -->
                 <TextView
                     android:id="@+id/tvTitle"
                     android:layout_width="wrap_content"
@@ -61,6 +73,7 @@
                     android:textStyle="bold"
                     android:textColor="@color/text_primary"/>
 
+                <!-- Subtitle -->
                 <TextView
                     android:id="@+id/tvSubtitle"
                     android:layout_width="wrap_content"
@@ -71,6 +84,7 @@
                     android:paddingTop="4dp"
                     android:paddingBottom="12dp"/>
 
+                <!-- Description -->
                 <TextView
                     android:id="@+id/tvDescription"
                     android:layout_width="match_parent"
@@ -88,21 +102,20 @@
                     android:background="#E0E0E0"
                     android:layout_marginBottom="16dp"/>
 
-                <!-- Info Rows -->
-                <!-- Info Rows -->
+                <!-- Info Section -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <!-- Time -->
                     <TextView
                         android:id="@+id/tvTimeLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Shift Time"
                         android:textStyle="bold"
-                        android:textColor="@color/text_primary"
-                        android:textSize="14sp"/>
+                        android:textColor="@color/text_primary"/>
 
                     <TextView
                         android:id="@+id/tvTime"
@@ -112,14 +125,14 @@
                         android:textColor="@color/text_secondary"
                         android:paddingBottom="10dp"/>
 
+                    <!-- Row 2 -->
                     <TextView
                         android:id="@+id/tvRow2Label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Assigned Nurses"
                         android:textStyle="bold"
-                        android:textColor="@color/text_primary"
-                        android:textSize="14sp"/>
+                        android:textColor="@color/text_primary"/>
 
                     <TextView
                         android:id="@+id/tvRow2Value"
@@ -129,14 +142,14 @@
                         android:textColor="@color/text_secondary"
                         android:paddingBottom="10dp"/>
 
+                    <!-- Row 3 -->
                     <TextView
                         android:id="@+id/tvRow3Label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tasks"
                         android:textStyle="bold"
-                        android:textColor="@color/text_primary"
-                        android:textSize="14sp"/>
+                        android:textColor="@color/text_primary"/>
 
                     <TextView
                         android:id="@+id/tvRow3Value"
@@ -145,12 +158,23 @@
                         android:text="Routine rounds and vitals monitoring"
                         android:textColor="@color/text_secondary"/>
 
-                </LinearLayout>
+                    <!-- MARK AS DONE BUTTON -->
+                    <Button
+                        android:id="@+id/btnMarkDone"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Mark as Done"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:backgroundTint="@color/primary"/>
 
+                </LinearLayout>
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+
 </ScrollView>

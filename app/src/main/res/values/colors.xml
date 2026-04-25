@@ -23,4 +23,9 @@
 
     <color name="blue_custom">#4E7FA1</color>
 
+    <color name="green">#4CAF50</color>
+    <color name="green_card">#4CAF50</color>
+    <color name="secondary">#FF9800</color> <!-- orange -->
+
+
 </resources>

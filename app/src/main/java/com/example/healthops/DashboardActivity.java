@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
+import com.example.healthops.R;
 import com.example.healthops.fragments.DutyFragment;
 import com.example.healthops.fragments.HomeFragment;
 import com.example.healthops.fragments.NotesFragment;
@@ -25,22 +25,15 @@ public class DashboardActivity extends AppCompatActivity {
         loadFragment(new HomeFragment());
 
         bottomNav.setOnItemSelectedListener(item -> {
-
             Fragment selectedFragment = null;
 
             if (item.getItemId() == R.id.nav_home) {
                 selectedFragment = new HomeFragment();
-            }
-
-            else if (item.getItemId() == R.id.nav_duty) {
-                selectedFragment = new DutyFragment();
-            }
-
-            else if (item.getItemId() == R.id.nav_notes) {
+            } else if (item.getItemId() == R.id.nav_duty) {
+                selectedFragment = new DutyFragment(); // correct fragment here
+            } else if (item.getItemId() == R.id.nav_notes) {
                 selectedFragment = new NotesFragment();
-            }
-
-            else if (item.getItemId() == R.id.nav_profile) {
+            } else if (item.getItemId() == R.id.nav_profile) {
                 selectedFragment = new ProfileFragment();
             }
 
@@ -51,11 +44,11 @@ public class DashboardActivity extends AppCompatActivity {
             return true;
         });
     }
-
     public void navigateTo(int bottomNavItemId) {
-        bottomNav.setSelectedItemId(bottomNavItemId);
+        if (bottomNav != null) {
+            bottomNav.setSelectedItemId(bottomNavItemId);
+        }
     }
-
     private void loadFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()

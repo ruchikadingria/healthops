@@ -84,7 +84,7 @@ public class PatientVisitsFragment extends Fragment {
         open.setLayoutParams(bp);
         open.setOnClickListener(v -> {
             Intent i = FileViewerActivity.newIntent(requireContext(), title, when, subtitle, description,
-                    row2Label, row2Val, row3Label, row3Val);
+                    row2Label, row2Val, row3Label, row3Val, null);
             startActivity(i);
         });
 
