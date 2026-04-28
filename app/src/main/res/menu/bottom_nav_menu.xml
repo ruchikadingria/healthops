@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
@@ -11,13 +12,13 @@
         android:icon="@drawable/ic_duty"/>
 
     <item
-        android:id="@+id/nav_notes"
-        android:title="Notes"
+        android:id="@+id/nav_medicine"
+        android:title="Medicine"
         android:icon="@drawable/ic_notes"/>
 
     <item
-        android:id="@+id/nav_medicine"
-        android:title="Medicine"
+        android:id="@+id/nav_notes"
+        android:title="Notes"
         android:icon="@drawable/ic_notes"/>
 
     <item

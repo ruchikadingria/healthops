@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.example.healthops.DashboardActivity;
 import com.example.healthops.LocaleManager;
 import com.example.healthops.LoginActivity;
 import com.example.healthops.PatientLoginActivity;
@@ -37,10 +36,25 @@ public class ProfileFragment extends Fragment {
         TextView subtitle = view.findViewById(R.id.profileSubtitle);
         String display = SessionPreferences.getDisplayName(requireContext());
         name.setText(display);
-        if (SessionPreferences.isPatient(requireContext())) {
+        
+        boolean isPatient = SessionPreferences.isPatient(requireContext());
+        if (isPatient) {
             subtitle.setText(R.string.profile_subtitle_patient);
         } else {
             subtitle.setText(R.string.profile_subtitle_staff);
+        }
+
+        // Handle Requests row visibility and click
+        View rowRequests = view.findViewById(R.id.rowRequests);
+        if (!isPatient) {
+            rowRequests.setVisibility(View.VISIBLE);
+            rowRequests.setOnClickListener(v -> {
+                if (getActivity() instanceof DashboardActivity) {
+                    ((DashboardActivity) getActivity()).loadFragment(new StaffRequestsFragment());
+                }
+            });
+        } else {
+            rowRequests.setVisibility(View.GONE);
         }
 
         view.findViewById(R.id.rowSaved).setOnClickListener(v ->

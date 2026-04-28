@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,7 +35,6 @@ public class HomeFragment extends Fragment {
 
         // ✅ SHIFT CARD CLICK
         view.findViewById(R.id.shiftCard).setOnClickListener(v -> {
-
             Intent i = FileViewerActivity.newIntent(
                     requireContext(),
                     getString(R.string.home_shift_title),
@@ -47,9 +45,8 @@ public class HomeFragment extends Fragment {
                     getString(R.string.home_shift_location),
                     getString(R.string.file_label_tasks),
                     getString(R.string.home_shift_tasks),
-                    null   // ✅ FIX: no taskId here
+                    null
             );
-
             startActivity(i);
         });
 
@@ -59,6 +56,16 @@ public class HomeFragment extends Fragment {
             if (getActivity() instanceof DashboardActivity) {
                 ((DashboardActivity) getActivity()).navigateTo(R.id.nav_duty);
             }
+        });
+
+        // MEDICINE BUTTON (Back by popular demand)
+        Button medicineOpen = view.findViewById(R.id.btnHomeMedicineOpen);
+        medicineOpen.setOnClickListener(v -> {
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, new MedicineFragment())
+                    .addToBackStack(null)
+                    .commit();
         });
 
         // NOTES BUTTON
@@ -72,14 +79,11 @@ public class HomeFragment extends Fragment {
         // RESOURCES BUTTON
         Button resourcesOpen = view.findViewById(R.id.btnHomeResourcesOpen);
         resourcesOpen.setOnClickListener(v -> {
-            if (getActivity() instanceof DashboardActivity) {
-                ResourceFragment resourceFragment = new ResourceFragment();
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragmentContainer, resourceFragment)
-                        .addToBackStack(null)
-                        .commit();
-            }
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, new ResourceFragment())
+                    .addToBackStack(null)
+                    .commit();
         });
 
         return view;

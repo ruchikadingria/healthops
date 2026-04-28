@@ -7,6 +7,11 @@
         android:icon="@drawable/ic_home" />
 
     <item
+        android:id="@+id/nav_patient_appointments"
+        android:title="Book"
+        android:icon="@drawable/ic_duty" />
+
+    <item
         android:id="@+id/nav_patient_visits"
         android:title="Visits"
         android:icon="@drawable/ic_duty" />

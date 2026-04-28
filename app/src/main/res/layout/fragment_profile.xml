@@ -175,6 +175,36 @@
             android:orientation="vertical"
             android:layout_marginTop="35dp">
 
+            <!-- Requests Row (Staff Only) -->
+            <LinearLayout
+                android:id="@+id/rowRequests"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/menu_item_bg"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Appointment Requests"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"/>
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_arrow"
+                    app:tint="@color/text_secondary"/>
+            </LinearLayout>
+
             <!-- Menu Row Template -->
             <LinearLayout
                 android:id="@+id/rowSaved"

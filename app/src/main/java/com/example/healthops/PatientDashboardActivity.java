@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.healthops.fragments.PatientAppointmentsFragment;
 import com.example.healthops.fragments.PatientHomeFragment;
 import com.example.healthops.fragments.PatientNotesFragment;
 import com.example.healthops.fragments.PatientVisitsFragment;
@@ -30,6 +31,8 @@ public class PatientDashboardActivity extends AppCompatActivity {
             int id = item.getItemId();
             if (id == R.id.nav_patient_home) {
                 selected = new PatientHomeFragment();
+            } else if (id == R.id.nav_patient_appointments) {
+                selected = new PatientAppointmentsFragment();
             } else if (id == R.id.nav_patient_visits) {
                 selected = new PatientVisitsFragment();
             } else if (id == R.id.nav_patient_notes) {
