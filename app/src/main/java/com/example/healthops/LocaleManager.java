@@ -11,26 +11,29 @@ public class LocaleManager {
     private static final String LANGUAGE_KEY = "selected_language";
     private static final String PREFERENCES = "LanguagePreferences";
 
-    public static void setLocale(Context context, String languageCode) {
+    // ✅ Set & Save Language
+    public static Context setLocale(Context context, String languageCode) {
         Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);
 
         Configuration config = new Configuration();
         config.setLocale(locale);
-        context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
 
-        // Save preference
+        // Save language
         SharedPreferences preferences = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
         preferences.edit().putString(LANGUAGE_KEY, languageCode).apply();
+
+        return context.createConfigurationContext(config); // ✅ modern approach
     }
 
+    // ✅ Get saved language
     public static String getLanguage(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
-        return preferences.getString(LANGUAGE_KEY, "en");
+        return preferences.getString(LANGUAGE_KEY, "en"); // default English
     }
 
-    public static void applyLanguage(Context context) {
-        String language = getLanguage(context);
-        setLocale(context, language);
+    // ✅ Apply saved language
+    public static Context applyLanguage(Context context) {
+        return setLocale(context, getLanguage(context));
     }
 }

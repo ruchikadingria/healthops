@@ -44,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
             int selectedPosition = languageSpinner.getSelectedItemPosition();
             String selectedLanguage = languageCodes[selectedPosition];
 
-            LocaleManager.setLocale(this, selectedLanguage);
+
             Toast.makeText(this, R.string.language_changed, Toast.LENGTH_SHORT).show();
 
             // Restart activity to apply changes

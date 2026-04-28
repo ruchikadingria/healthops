@@ -15,10 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import com.example.healthops.DashboardActivity;
 import com.example.healthops.LocaleManager;
 import com.example.healthops.LoginActivity;
-import com.example.healthops.PatientDashboardActivity;
 import com.example.healthops.PatientLoginActivity;
 import com.example.healthops.R;
 import com.example.healthops.SessionPreferences;
@@ -74,14 +72,8 @@ public class ProfileFragment extends Fragment {
             LocaleManager.setLocale(requireContext(), selectedLanguage);
             Toast.makeText(requireContext(), R.string.language_changed, Toast.LENGTH_SHORT).show();
 
-            // Restart the entire activity to reload all fragments with new language
-            if (getActivity() instanceof DashboardActivity) {
-                DashboardActivity activity = (DashboardActivity) getActivity();
-                activity.recreate();
-            } else if (getActivity() instanceof PatientDashboardActivity) {
-                PatientDashboardActivity activity = (PatientDashboardActivity) getActivity();
-                activity.recreate();
-            }
+            // Recreate the activity to apply language changes
+            getActivity().recreate();
             dialog.dismiss();
         });
 

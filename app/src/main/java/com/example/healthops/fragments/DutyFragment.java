@@ -20,12 +20,21 @@ import com.example.healthops.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class DutyFragment extends Fragment {
 
     private LinearLayout tasksContainer;
     private FirebaseFirestore db;
     private String userId;
     private static final String TAG = "DutyFragment";
+    
+    // Current date references
+    private TextView tvCurrentDay;
+    private TextView tvCurrentDate;
+    private TextView tvCurrentDateDisplay;
 
     @Nullable
     @Override
@@ -37,7 +46,14 @@ public class DutyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_duty, container, false);
 
         tasksContainer = view.findViewById(R.id.tasksContainer);
+        tvCurrentDay = view.findViewById(R.id.tvCurrentDay);
+        tvCurrentDate = view.findViewById(R.id.tvCurrentDate);
+        tvCurrentDateDisplay = view.findViewById(R.id.tvCurrentDateDisplay);
+        
         db = FirebaseFirestore.getInstance();
+
+        // Set current date display
+        updateCurrentDateDisplay();
 
         // Check if user is logged in
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
@@ -48,10 +64,29 @@ public class DutyFragment extends Fragment {
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Log.d(TAG, "Loading tasks for user: " + userId);
 
-        // Load tasks for this user
+        // Load tasks for current date
         loadTasks();
 
         return view;
+    }
+    
+    private void updateCurrentDateDisplay() {
+        Calendar today = Calendar.getInstance();
+        
+        // Format: "Mon" (day name)
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEE", Locale.getDefault());
+        String dayName = dayFormat.format(today.getTime());
+        tvCurrentDay.setText(dayName);
+        
+        // Format: "28" (day number)
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd", Locale.getDefault());
+        String dateNum = dateFormat.format(today.getTime());
+        tvCurrentDate.setText(dateNum);
+        
+        // Format: "Monday, April 28"
+        SimpleDateFormat fullFormat = new SimpleDateFormat("EEEE, MMMM dd", Locale.getDefault());
+        String fullDate = fullFormat.format(today.getTime());
+        tvCurrentDateDisplay.setText(fullDate);
     }
 
     private void loadTasks() {
@@ -60,22 +95,14 @@ public class DutyFragment extends Fragment {
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Log.d(TAG, "========== TASK LOADING DEBUG ==========");
         Log.d(TAG, "Current User ID: " + currentUserId);
-        Log.d(TAG, "Query: tasks where assignedTo == " + currentUserId);
 
-        // First, let's see ALL tasks in the database (for debugging)
-        db.collection("tasks")
-                .addSnapshotListener((allTasksSnapshot, allTasksError) -> {
-                    if (allTasksSnapshot != null) {
-                        Log.d(TAG, "Total tasks in database: " + allTasksSnapshot.size());
-                        for (int i = 0; i < allTasksSnapshot.size(); i++) {
-                            String assignedTo = allTasksSnapshot.getDocuments().get(i).getString("assignedTo");
-                            String title = allTasksSnapshot.getDocuments().get(i).getString("title");
-                            Log.d(TAG, "  [" + i + "] Title: " + title + ", AssignedTo: " + assignedTo);
-                        }
-                    }
-                });
+        // Get today's date in yyyy-MM-dd format
+        Calendar today = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String todayDateStr = sdf.format(today.getTime());
+        Log.d(TAG, "Today's Date: " + todayDateStr);
 
-        // Now query for THIS user's tasks
+        // Query for THIS user's tasks for today
         db.collection("tasks")
                 .whereEqualTo("assignedTo", currentUserId)
                 .addSnapshotListener((value, error) -> {
@@ -99,10 +126,6 @@ public class DutyFragment extends Fragment {
                     if (value == null || value.isEmpty()) {
                         // No tasks found for this user
                         Log.w(TAG, "⚠️ No tasks found for user: " + currentUserId);
-                        Log.w(TAG, "This could mean:");
-                        Log.w(TAG, "  1. No tasks assigned to this user");
-                        Log.w(TAG, "  2. Tasks collection is empty");
-                        Log.w(TAG, "  3. 'assignedTo' field doesn't match user ID");
 
                         tasksContainer.removeAllViews();
                         LinearLayout container = new LinearLayout(requireContext());
@@ -125,7 +148,9 @@ public class DutyFragment extends Fragment {
                     }
 
                     tasksContainer.removeAllViews();
-                    Log.d(TAG, "✅ Found " + value.size() + " tasks for user");
+                    Log.d(TAG, "✅ Found " + value.size() + " total tasks for user");
+                    
+                    int tasksForToday = 0;
 
                     value.forEach(doc -> {
                         try {
@@ -133,13 +158,22 @@ public class DutyFragment extends Fragment {
                             if (isDone != null && isDone) {
                                 return;
                             }
+                            
+                            // Filter by today's date
+                            String taskDateStr = doc.getString("date");
+                            if (taskDateStr != null && !taskDateStr.isEmpty()) {
+                                if (!taskDateStr.equals(todayDateStr)) {
+                                    Log.d(TAG, "Skipping task - not for today: " + taskDateStr);
+                                    return;  // Skip tasks not for today
+                                }
+                            }
 
                             String taskId = doc.getId();
                             String title = doc.getString("title");
                             String description = doc.getString("description");
                             String ward = doc.getString("ward");
 
-                            Log.d(TAG, "  ✓ Task: " + title);
+                            Log.d(TAG, "  ✓ Task for today: " + title);
 
                             LinearLayout taskCard = new LinearLayout(requireContext());
                             taskCard.setOrientation(LinearLayout.VERTICAL);
@@ -192,6 +226,23 @@ public class DutyFragment extends Fragment {
                             Log.e(TAG, "Error processing task: " + e.getMessage());
                         }
                     });
+                    
+                    // Show message if no tasks for today
+                    tasksForToday = tasksContainer.getChildCount();
+                    if (tasksForToday == 0) {
+                        LinearLayout emptyContainer = new LinearLayout(requireContext());
+                        emptyContainer.setOrientation(LinearLayout.VERTICAL);
+                        emptyContainer.setPadding(20, 20, 20, 20);
+                        
+                        TextView noTasksView = new TextView(requireContext());
+                        noTasksView.setText("No tasks assigned for today");
+                        noTasksView.setTextSize(16);
+                        noTasksView.setTextColor(0xFF999999);
+                        emptyContainer.addView(noTasksView);
+                        
+                        tasksContainer.addView(emptyContainer);
+                    }
                 });
     }
 }
+
