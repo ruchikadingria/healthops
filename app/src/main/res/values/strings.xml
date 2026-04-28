@@ -33,4 +33,5 @@
     <string name="home_shift_body">You are rostered for general ward coverage including admissions handoff.</string>
     <string name="home_shift_location">Ward A</string>
     <string name="home_shift_tasks">Rounds, vitals, documentation</string>
+    <string name="no_tasks">No tasks assigned</string>
 </resources>

@@ -75,6 +75,14 @@ public class NotesFragment extends Fragment {
         searchInput = view.findViewById(R.id.searchNotes);
 
         db = FirebaseFirestore.getInstance();
+
+        // Check if user is logged in
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            Toast.makeText(getContext(), "Please login first", Toast.LENGTH_SHORT).show();
+            requireActivity().finish();
+            return view;
+        }
+
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         FloatingActionButton fab = view.findViewById(R.id.fabAddPatientNote);

@@ -16,6 +16,11 @@
         android:icon="@drawable/ic_notes"/>
 
     <item
+        android:id="@+id/nav_medicine"
+        android:title="Medicine"
+        android:icon="@drawable/ic_notes"/>
+
+    <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_profile"
         android:title="Profile" />

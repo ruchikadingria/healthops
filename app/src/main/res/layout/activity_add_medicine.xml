@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@color/bg_light">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@android:drawable/ic_media_previous"
+            android:tint="@color/primary"
+            android:padding="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Medicine"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:layout_marginStart="10dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Medicine Name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medicine Name"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:layout_marginTop="16dp" />
+
+            <EditText
+                android:id="@+id/etMedicineName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="e.g., Aspirin 500mg"
+                android:background="@drawable/white_card"
+                android:padding="12dp"
+                android:layout_marginTop="8dp"
+                android:inputType="text" />
+
+            <!-- Quantity -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:layout_marginTop="16dp" />
+
+            <EditText
+                android:id="@+id/etQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Number of units"
+                android:background="@drawable/white_card"
+                android:padding="12dp"
+                android:layout_marginTop="8dp"
+                android:inputType="number" />
+
+            <!-- Expiry Date -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Expiry Date"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:layout_marginTop="16dp" />
+
+            <EditText
+                android:id="@+id/etExpiryDate"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="YYYY-MM-DD (tap to pick)"
+                android:background="@drawable/white_card"
+                android:padding="12dp"
+                android:layout_marginTop="8dp"
+                android:inputType="text"
+                android:focusable="false" />
+
+            <!-- Low Stock Threshold -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Low Stock Alert (units)"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:layout_marginTop="16dp" />
+
+            <EditText
+                android:id="@+id/etLowStockThreshold"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Alert when quantity drops below (default: 10)"
+                android:background="@drawable/white_card"
+                android:padding="12dp"
+                android:layout_marginTop="8dp"
+                android:inputType="number"
+                android:text="10" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/btnSaveMedicine"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Save"
+            android:backgroundTint="@color/primary" />
+
+        <Button
+            android:id="@+id/btnDeleteMedicine"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Delete"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FF0000"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</LinearLayout>

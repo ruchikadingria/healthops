@@ -27,7 +27,13 @@
         android:theme="@style/Theme.HealthOps">
 
         <activity
+            android:name=".AddMedicineActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity
             android:name=".AddEditNoteActivity"
+            android:exported="false"
             android:windowSoftInputMode="adjustResize"/>
 
         <activity
