@@ -18,6 +18,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LocaleManager.applyLanguage(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 

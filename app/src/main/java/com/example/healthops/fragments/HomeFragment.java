@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.healthops.DashboardActivity;
 import com.example.healthops.FileViewerActivity;
+import com.example.healthops.LocaleManager;
 import com.example.healthops.R;
 import com.example.healthops.SessionPreferences;
 
@@ -24,6 +25,8 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        // Apply saved language
+        LocaleManager.applyLanguage(requireContext());
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -63,6 +66,19 @@ public class HomeFragment extends Fragment {
         notesOpen.setOnClickListener(v -> {
             if (getActivity() instanceof DashboardActivity) {
                 ((DashboardActivity) getActivity()).navigateTo(R.id.nav_notes);
+            }
+        });
+
+        // RESOURCES BUTTON
+        Button resourcesOpen = view.findViewById(R.id.btnHomeResourcesOpen);
+        resourcesOpen.setOnClickListener(v -> {
+            if (getActivity() instanceof DashboardActivity) {
+                ResourceFragment resourceFragment = new ResourceFragment();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, resourceFragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 

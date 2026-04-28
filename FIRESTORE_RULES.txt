@@ -15,6 +15,17 @@ service cloud.firestore {
       allow read, write: if request.auth != null;
     }
 
+    // Allow authenticated users to read/write medicines
+    match /medicines/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Allow authenticated staff users to read/write hospital resources
+    match /resources/{document=**} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+
     // Allow authenticated users to read/write their own user info
     match /users/{userId} {
       allow read, write: if request.auth.uid == userId;

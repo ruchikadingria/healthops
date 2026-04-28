@@ -22,6 +22,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 
 import com.example.healthops.AddEditNoteActivity;
 import com.example.healthops.FileViewerActivity;
+import com.example.healthops.LocaleManager;
 import com.example.healthops.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,6 +69,8 @@ public class NotesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        // Apply saved language
+        LocaleManager.applyLanguage(requireContext());
 
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
 

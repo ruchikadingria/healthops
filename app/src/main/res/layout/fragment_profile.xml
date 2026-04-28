@@ -261,6 +261,34 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/rowLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/menu_item_bg"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/select_language"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"/>
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_arrow"
+                    app:tint="@color/text_secondary"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/rowLogout"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"

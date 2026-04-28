@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.healthops.LocaleManager;
 import com.example.healthops.R;
 
 import java.util.ArrayList;
@@ -32,6 +33,8 @@ public class PatientNotesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup containerParent,
                              @Nullable Bundle savedInstanceState) {
+        // Apply saved language
+        LocaleManager.applyLanguage(requireContext());
 
         View view = inflater.inflate(R.layout.fragment_patient_notes, containerParent, false);
 

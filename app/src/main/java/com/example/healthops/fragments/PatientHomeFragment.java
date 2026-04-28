@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.healthops.FileViewerActivity;
+import com.example.healthops.LocaleManager;
 import com.example.healthops.PatientDashboardActivity;
 import com.example.healthops.R;
 import com.example.healthops.SessionPreferences;
@@ -23,6 +24,9 @@ public class PatientHomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        // Apply saved language
+        LocaleManager.applyLanguage(requireContext());
+
         View view = inflater.inflate(R.layout.fragment_patient_home, container, false);
 
         TextView greeting = view.findViewById(R.id.patientGreeting);

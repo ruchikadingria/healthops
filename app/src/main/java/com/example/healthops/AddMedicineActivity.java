@@ -34,6 +34,7 @@ public class AddMedicineActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LocaleManager.applyLanguage(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_medicine);
 
@@ -94,17 +95,17 @@ public class AddMedicineActivity extends AppCompatActivity {
         String thresholdStr = etLowStockThreshold.getText().toString().trim();
 
         if (medicineName.isEmpty()) {
-            Toast.makeText(this, "Enter medicine name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.enter_medicine_name, Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (quantityStr.isEmpty()) {
-            Toast.makeText(this, "Enter quantity", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.enter_quantity, Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (expiryDate.isEmpty()) {
-            Toast.makeText(this, "Enter expiry date", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.enter_expiry_date, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -124,7 +125,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                 db.collection("medicines").document(docId)
                         .set(medicine)
                         .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(AddMedicineActivity.this, "Medicine updated", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddMedicineActivity.this, R.string.medicine_updated, Toast.LENGTH_SHORT).show();
                             finish();
                         })
                         .addOnFailureListener(e -> {
@@ -136,7 +137,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                 db.collection("medicines")
                         .add(medicine)
                         .addOnSuccessListener(docRef -> {
-                            Toast.makeText(AddMedicineActivity.this, "Medicine added", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddMedicineActivity.this, R.string.medicine_added, Toast.LENGTH_SHORT).show();
                             finish();
                         })
                         .addOnFailureListener(e -> {
@@ -153,13 +154,13 @@ public class AddMedicineActivity extends AppCompatActivity {
         if (docId == null) return;
 
         new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle("Delete Medicine")
-                .setMessage("Are you sure?")
-                .setPositiveButton("Yes", (dialog, which) -> {
+                .setTitle(R.string.delete_medicine)
+                .setMessage(R.string.are_you_sure)
+                .setPositiveButton(R.string.yes, (dialog, which) -> {
                     db.collection("medicines").document(docId)
                             .delete()
                             .addOnSuccessListener(aVoid -> {
-                                Toast.makeText(AddMedicineActivity.this, "Medicine deleted", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddMedicineActivity.this, R.string.medicine_deleted, Toast.LENGTH_SHORT).show();
                                 finish();
                             })
                             .addOnFailureListener(e -> {
@@ -167,7 +168,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                                 Toast.makeText(AddMedicineActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                             });
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton(R.string.no, null)
                 .show();
     }
 }

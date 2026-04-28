@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.healthops.FileViewerActivity;
+import com.example.healthops.LocaleManager;
 import com.example.healthops.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,6 +31,8 @@ public class DutyFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        // Apply saved language
+        LocaleManager.applyLanguage(requireContext());
 
         View view = inflater.inflate(R.layout.fragment_duty, container, false);
 
