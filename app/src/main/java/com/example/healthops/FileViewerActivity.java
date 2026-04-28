@@ -1,7 +1,11 @@
 package com.example.healthops;
 
+import android.Manifest;
+import android.util.Log;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -11,7 +15,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
@@ -27,9 +34,10 @@ public class FileViewerActivity extends AppCompatActivity {
     public static final String EXTRA_ROW3_LABEL = "ROW3_LABEL";
     public static final String EXTRA_ROW3_VALUE = "ROW3_VALUE";
     public static final String EXTRA_TASK_ID = "TASK_ID";
-    public static final String EXTRA_TIME_LABEL = "TIME_LABEL";   // ✅ FIXED
+    public static final String EXTRA_TIME_LABEL = "TIME_LABEL";
 
-    // ✅ MAIN INTENT (SAFE - ALWAYS USE THIS)
+    private FusedLocationProviderClient fusedLocationClient;
+
     public static Intent newIntent(Context context,
                                    String title,
                                    String time,
@@ -58,6 +66,8 @@ public class FileViewerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file_viewer);
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         Intent intent = getIntent();
 
@@ -106,20 +116,107 @@ public class FileViewerActivity extends AppCompatActivity {
                     .setTitle("Confirm Completion")
                     .setMessage("This action cannot be undone.")
                     .setPositiveButton("Yes", (dialog, which) -> {
-
-                        FirebaseFirestore.getInstance()
-                                .collection("tasks")
-                                .document(taskId)
-                                .update("isDone", true, "completedAt", new Date())
-                                .addOnSuccessListener(unused -> {
-                                    Toast.makeText(this, "Completed", Toast.LENGTH_SHORT).show();
-                                    btnMarkDone.setText("Completed");
-                                    btnMarkDone.setEnabled(false);
-                                });
-
+                        checkLocationAndCompleteTask(taskId, btnMarkDone);
                     })
                     .setNegativeButton("Cancel", null)
                     .show();
         });
+    }
+
+    // ==============================
+    // LOCATION CHECK + COMPLETE TASK
+    // ==============================
+    private void checkLocationAndCompleteTask(String taskId, Button btnMarkDone) {
+
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            Toast.makeText(this, "Location permission required", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(userLocation -> {
+
+                    if (userLocation == null) {
+                        Toast.makeText(this, "Turn on GPS", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    double userLat = userLocation.getLatitude();
+                    double userLng = userLocation.getLongitude();
+
+                    FirebaseFirestore.getInstance()
+                            .collection("tasks")
+                            .document(taskId)
+                            .get()
+                            .addOnSuccessListener(taskDoc -> {
+
+                                String locationName = taskDoc.getString("locationName");
+
+                                if (locationName == null || locationName.isEmpty()) {
+                                    Toast.makeText(this, "Task has no location", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                                // 🔥 STEP 2: Get location from hospital_locations
+                                FirebaseFirestore.getInstance()
+                                        .collection("hospital_locations")
+                                        .whereEqualTo("name", locationName)
+                                        .get()
+                                        .addOnSuccessListener(querySnapshot -> {
+
+                                            if (querySnapshot.isEmpty()) {
+                                                Toast.makeText(this, "Location not found in database", Toast.LENGTH_SHORT).show();
+                                                return;
+                                            }
+
+                                            var locationDoc = querySnapshot.getDocuments().get(0);
+
+                                            Double taskLat = locationDoc.getDouble("lat");
+                                            Double taskLng = locationDoc.getDouble("lng");
+                                            Double radius = locationDoc.getDouble("radius");
+
+                                            if (taskLat == null || taskLng == null || radius == null) {
+                                                Toast.makeText(this, "Invalid location data", Toast.LENGTH_SHORT).show();
+                                                return;
+                                            }
+
+                                            float[] results = new float[1];
+
+                                            Location.distanceBetween(
+                                                    taskLat, taskLng,
+                                                    userLat, userLng,
+                                                    results
+                                            );
+
+                                            float distance = results[0];
+
+                                            if (distance <= radius) {
+
+                                                // ✅ ALLOW COMPLETION
+                                                FirebaseFirestore.getInstance()
+                                                        .collection("tasks")
+                                                        .document(taskId)
+                                                        .update("isDone", true, "completedAt", new Date())
+                                                        .addOnSuccessListener(unused -> {
+                                                            Toast.makeText(this, "Task Completed", Toast.LENGTH_SHORT).show();
+                                                            btnMarkDone.setText("Completed");
+                                                            btnMarkDone.setEnabled(false);
+                                                        });
+
+                                            } else {
+
+                                                int dist = (int) distance;
+
+                                                Toast.makeText(this,
+                                                        "You are " + dist + "m away. Move closer.",
+                                                        Toast.LENGTH_LONG).show();
+                                            }
+
+                                        });
+                            });
+                });
     }
 }
